@@ -24,7 +24,7 @@ public class RoleDtoConverter implements Converter<String, RoleDTO> {
             return null;
         }
 
-        return roleService.findbyId(Long.parseLong(source));
+        return roleService.findById(Long.parseLong(source));
 
     }
 

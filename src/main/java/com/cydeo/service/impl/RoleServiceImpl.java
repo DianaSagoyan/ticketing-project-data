@@ -28,7 +28,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDTO findbyId(Long id) {
-        return null;
+    public RoleDTO findById(Long id) {
+        return roleMapper.convertToDto(roleRepository.findById(id).get());
+
     }
 }
