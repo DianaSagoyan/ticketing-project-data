@@ -1,6 +1,9 @@
 package com.cydeo.service.impl;
 
 import com.cydeo.dto.ProjectDTO;
+import com.cydeo.entity.Project;
+import com.cydeo.entity.User;
+import com.cydeo.enums.Status;
 import com.cydeo.mapper.ProjectMapper;
 import com.cydeo.repository.ProjectRepository;
 import com.cydeo.service.ProjectService;
@@ -32,6 +35,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void save(ProjectDTO dto) {
+        if (dto.getProjectStatus() == null){
+
+            dto.setProjectStatus(Status.OPEN);
+
+        }
         projectRepository.save(projectMapper.convertToEntity(dto));
     }
 
@@ -43,5 +51,16 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void delete(String code) {
 
+        Project project = projectRepository.findByProjectCode(code);
+        project.setIsDeleted(true);;
+        projectRepository.save(project);
+
+    }
+
+    @Override
+    public void complete(String code) {
+        Project project = projectRepository.findByProjectCode(code);
+        project.setStatus(Status.COMPLETE);
+        projectRepository.save(project);
     }
 }
