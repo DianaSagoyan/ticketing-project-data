@@ -10,4 +10,7 @@ public interface TaskService {
     void delete(Long id);
     List<TaskDTO> listAllTasks();
     TaskDTO findById(Long id);
+
+    int totalNonCompletedTask(String projectCode);
+    int totalCompletedTask(String projectCode);
 }
