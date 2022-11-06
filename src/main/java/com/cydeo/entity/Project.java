@@ -17,12 +17,13 @@ import java.time.LocalDate;
 @Where(clause = "is_deleted = false")
 public class Project extends BaseEntity{
 
+    @Column(unique = true)
     private String projectCode;
     private String projectName;
     private LocalDate startDate;
     private LocalDate endDate;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status projectStatus;
     @Column(columnDefinition = "text")
     private String projectDetail;
 
